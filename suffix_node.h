@@ -12,7 +12,6 @@
 template<int K>
 class SuffixNode {
 public:
-    bool isEnd;
     std::array<SuffixNode<K>*, K> children;
     SuffixNode<K>* suffixLink;
 
@@ -22,7 +21,7 @@ public:
 
 template<int K>
 SuffixNode<K>::SuffixNode()
-    : isEnd(false), suffixLink(nullptr) {
+        : suffixLink(nullptr) {
     children.fill(nullptr);
 }
 
