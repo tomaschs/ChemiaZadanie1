@@ -14,32 +14,43 @@
 template<int K>
 class SuffixTree {
 public:
-    // Constructor
     SuffixTree(std::function<int(char)> cToOrd,
                std::function<char(int)> oToChar)
             : root(new SuffixNode<K>()),
               charToOrd(cToOrd),
               ordToChar(oToChar) {}
 
-    // Destructor
     ~SuffixTree() {
-        delete root;
-        root = nullptr;
+        clear();
     }
 
-    // Build method (placeholder)
+
+
     void build(const std::string& text);
 
-    // Find method (placeholder)
     bool find(const std::string& pattern);
 
-    // Print method (placeholder)
     void print();
+
+    void clearNode(SuffixNode<K>* node) {
+        if (!node) return;
+        for (auto& child : node->children) {
+            clearNode(child);
+        }
+        delete node;
+    }
+
+    void clear() {
+        clearNode(root);
+        root = nullptr;
+    }
 
 private:
     SuffixNode<K>* root;
     std::function<int(char)> charToOrd;
     std::function<char(int)> ordToChar;
+
+
 };
 
 
